@@ -109,26 +109,7 @@ class ReservoirRewriteMulti:
 
 
         np.save(pathReservoirState, all_res_state)
-        # if (np.isnan(np.any(all_res_state)==True)):
-        #     print("Nan TRUE")
-        #     all_res_state = np.nan_to_num(all_res_state)
-        # if (np.isinf(np.any(all_res_state)==True)):
-        #     print("isinf TRUE")
-        #     all_res_state = np.nan_to_num(all_res_state, posinf=0, neginf=0) 
-        # valueTemp = True
-        # print("min in all_res_state =", np.min(all_res_state))
-        # if (np.isnan(all_res_state).any()==valueTemp):
-        #     print("Nan "+str(valueTemp))
-        #     all_res_state = np.nan_to_num(all_res_state)
-
-        # if (np.isinf(all_res_state).any()==valueTemp):
-        #     print("isinf "+str(valueTemp))
-        #     all_res_state = np.nan_to_num(all_res_state, posinf=0, neginf=0)
-        # print("min in all_res_state =", np.min(all_res_state))
-        
-        
-        
-        # print (f'{all_res_state.shape =}')
+       
         # ============ Generate representation of the MTS ============
         coeff_tr = []
         biases_tr = [] 
@@ -372,20 +353,6 @@ def main_function(numberMultipleReservoir=1, numberNode=90, arrayLeakList=[0.856
     configParam = {}
     
     # Hyperarameters of the reservoir
-    # configParam['n_internal_units'] = 50  # 300 # 450  # trial.suggest_int("n_internal_units", 300, 510, log=True) 
-    # configParam['spectral_radius'] = [0.177, 0.177, 0.177]  # [trial.suggest_float("spectral_radius", 0.1, 1, log=True)] 
-    # configParam['leakList'] = [0.6834, 0.6834, 0.6834]  # [0.6834, 0.8007, 0.5418] # 0.6834 , 0.8007, 0.5418 # [trial.suggest_float("leakList", 0.1, 1, log=True)] 
-    # configParam['connectivity'] = [0.224, 0.224, 0.224]  # [trial.suggest_float("connectivity", 0.1, 1, log=True)] 
-    # configParam['input_scaling'] = [0.2273]  # [trial.suggest_float("input_scaling", 0.1, 1, log=True)] 
-    # configParam['noise_level'] = 0.132  # trial.suggest_float("noise_level", 0.1, 1, log=True)  
-    # configParam['n_drop'] = 0  # transient states to be dropped
-  
-    # configParam['w_ridge_embedding'] = 27  # trial.suggest_int("w_ridge_embedding", 1, 50, log=True) # 10.0  # regularization parameter of the ridge regression
-    # # Type of readout
-    # configParam['readout_type'] = 'lin'  # readout used for classification: {'lin', 'mlp', 'svm'}
-    # # Linear readout hyperparameters
-    # configParam['w_ridge'] = 1  # trial.suggest_int("w_ridge", 1, 50, log=True)  # 5.0  # regularization of the ridge regression readout
-    
     configParam['n_internal_units'] = numberNode 
     configParam['spectral_radius'] = [0.3, 0.3, 0.3]  
     configParam['leakList'] = arrayLeakList  
@@ -413,12 +380,6 @@ def main_function(numberMultipleReservoir=1, numberNode=90, arrayLeakList=[0.856
     listF1 = []
     maxAccuracy = 0
     
-    # """initialise a wandb run"""
-    # wandb.init(
-    #     project="PLOSOne_top_k",
-    #     entity="army",
-    #     config=configParam
-    # )
 
     for ii in range(configParam['repeat']): 
         # if (ii == 0):
@@ -483,16 +444,6 @@ def main_function(numberMultipleReservoir=1, numberNode=90, arrayLeakList=[0.856
     meanTop10, stdTop10 = xp.mean(listAccuracyTop10), xp.std(listAccuracyTop10)
     meanF1, stdF1 = xp.mean(listF1), xp.std(listF1)
     print(f'{maxAccuracy =} ; {mean =}; {std =} ; {meanTop5 =}; {stdTop5 =} ; {meanTop10 =}; {stdTop10 =} ; {meanF1 =}; {stdF1 =} ; {meanTrainingTime} ; {meanTestingTime}')
-    # summary_table = wandb.Table(columns=["maxAccuracy", "meanAccuracy", "stdAccuracy", "meanAccuracyTop5", "stdAccuracyTop5", "meanAccuracyTop10", "stdAccuracyTop10", "meanF1", "stdF1", "meanTrainingTime", "meanTestingTime", 'numberNode', 'detailFileName'])
-    # summary_table.add_data(maxAccuracy, mean, std, meanTop5, stdTop5, meanTop10, stdTop10, meanF1, stdF1, str(meanTrainingTime), str(meanTestingTime), str(numberMultipleReservoir*numberNode), detailFileName)
-    # wandb.log({"summary_table": summary_table})
-    # wandb.finish()
-    '''  '''
-
-    # clf = RandomForestClassifier(**params)
-    # clf.fit(x_train, y_train)
-    # pred = clf.predict(x_valid)
-    # score = accuracy_score(y_valid, pred)
     return mean
 
 
@@ -525,8 +476,4 @@ if __name__ == '__main__':
     #main_function(numberMultipleReservoir=2, numberNode=255, arrayLeakList=[0.9, 0.8])
     #main_function(numberMultipleReservoir=3, numberNode=170, arrayLeakList=[0.9, 0.8, 0.6])
 
-    #main_function(numberMultipleReservoir=2, numberNode=255, arrayLeakList=[0.9, 0.9])
-    #main_function(numberMultipleReservoir=3, numberNode=170, arrayLeakList=[0.9, 0.9, 0.9])
 
-
-    # https://github.com/Nikhilkohli1/Real-Time-Interaction-Using-Sign-Language/tree/master
