@@ -12,3 +12,8 @@ This repository contains proposed methods for Sign Language Recognition (SLR) us
 ## How to Access the Dataset
 
 Please access the dataset from https://dxli94.github.io/WLASL/
+
+# Citation
+If you find this work useful, please cite it as follows:
+
+Syulistyo A, Tanaka Y, Pramanta D, Fuengfusin N, Tamukoh H (2025) Low-cost computation for isolated sign language video recognition with multiple reservoir computing. PLoS One 20(7): e0322717. https://doi.org/10.1371/journal.pone.0322717
