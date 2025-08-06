@@ -153,9 +153,7 @@ class ExtractTheKeypoint:
         capture = cv2.VideoCapture(pathFile)
         # Set mediapipe model 
         # print (cap.isOpened())
-        if (is_flip == False):
-              movieNameParam = movieNameParam
-        elif (is_flip == True):
+        if (is_flip == True):
               movieNameParam = movieNameParam + "_flip" 
 
 
