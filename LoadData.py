@@ -46,7 +46,10 @@ class SplittingData:
         for vid in data.keys():
             # this code make the loop back to the main loop while does not meet the parameter such us: test, train, or val
             if split == 'train':
-                if data[vid]['subset'] not in ['train', 'val']:
+                if data[vid]['subset'] != 'train':
+                    continue
+            elif split == 'val':
+                if data[vid]['subset'] != 'val':
                     continue
             else:
                 if data[vid]['subset'] != 'test':
