@@ -30,9 +30,9 @@ class LoadExtractedKeypoint:
                 window = []
                 tempSequencesWhichExist = 0
                 # list all npy file for each frame in the video
-                allKeyPointData = os.listdir(os.path.join(DATA_PATH_KEYPOINT,
+                allKeyPointData = sorted(os.listdir(os.path.join(DATA_PATH_KEYPOINT,
                                                           action,
-                                                          actionSubFolder))
+                                                          actionSubFolder)))
                 print(f'{allKeyPointData =}')
                 for _ in range(len(allKeyPointData)): 
                     print(f'{_}')
